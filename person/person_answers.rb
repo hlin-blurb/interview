@@ -13,7 +13,7 @@ class Person < ActiveRecord::Base
 
   def verify_valid_age # should be a validation, not callback
     if age < 12 or age > 120
-      self.errors.add('Age in invalid!')
+      self.errors.add('Age is invalid!')
     end
   end
 
