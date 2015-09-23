@@ -57,7 +57,7 @@ class Person < ActiveRecord::Base
 
   def set_nickname
     new_nickname = ''
-    blog_post_count = BlogPost.count("author_id = #{id}")
+    blog_post_count = BlogPost.count("person_id = #{id}")
     puts blog_post_count
     experience_level = if blog_post_count < 10
       'Beginner'
@@ -79,4 +79,3 @@ class Person < ActiveRecord::Base
     save
   end
 end
-
