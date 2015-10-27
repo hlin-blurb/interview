@@ -1,0 +1,8 @@
+questions
+* what are the most important lessons you've learned in your career?
+* technical debt
+* testing, tdd, bdd
+* favorite and least favorite thing about ruby and rails
+* opinion on the state of javascript frameworks
+* what are the http verbs and what do they mean?
+
