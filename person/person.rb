@@ -1,11 +1,11 @@
 # attributes:
-# first_name
-# last_name
-# nickname
-# age
-# number_of_logins
-# favorite_language
-# favorite_number_or_color
+# first_name                string
+# last_name                 string
+# nickname                  string
+# age                       integer
+# number_of_logins          integer
+# favorite_language         string
+# favorite_thing            integer/string
 class Person < ActiveRecord::Base
   has_many :blog_posts
 
@@ -47,11 +47,19 @@ class Person < ActiveRecord::Base
     favorite_language == 'python'
   end
 
-  def correct_favorite_number_or_color
-    if favorite_number_or_color === Fixnum
-      return favorite_number_or_color == 'black'
-    elsif favorite_number_or_color === String
-      return favorite_number_or_color == 21
+  def converted_favorite_thing
+    if favorite_thing =~ /^\d*$/
+      favorite_thing.to_i
+    else
+      favorite_thing
+    end
+  end
+
+  def favorite_number_is_small
+    if converted_favorite_thing === Fixnum
+      return converted_favorite_thing <= 10
+    else
+      return nil
     end
   end
 
@@ -79,3 +87,4 @@ class Person < ActiveRecord::Base
     save
   end
 end
+

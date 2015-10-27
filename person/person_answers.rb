@@ -1,11 +1,11 @@
 # attributes:
-# first_name
-# last_name
-# nickname
-# age
-# number_of_logins
-# favorite_language
-# favorite_number_or_color # do not store two things in one column
+# first_name                string
+# last_name                 string
+# nickname                  string
+# age                       integer
+# number_of_logins          integer
+# favorite_language         string
+# favorite_number_or_color  integer/string # do not store two things in one column
 class Person < ActiveRecord::Base
   has_many :blog_posts
 
@@ -22,7 +22,7 @@ class Person < ActiveRecord::Base
   end
 
   def full_name
-    if first_name && last_name
+    if first_name && last_name # use && instead of and
       "#{first_name} #{last_name}"
     else # unnecessary else
       nil
@@ -48,12 +48,19 @@ class Person < ActiveRecord::Base
     favorite_language == 'python'
   end
 
-  def correct_favorite_number_or_color # correct_favorite_number_or_color?
-    # the if/else statements should be switched
-    if favorite_number_or_color === Fixnum # use is_a? instead
-      return favorite_number_or_color == 'black' #unnecessary return
-    elsif favorite_number_or_color === String
-      return favorite_number_or_color == 21 #unnecessary return
+  def converted_favorite_thing
+    if favorite_thing =~ /^\d*$/ # should use \A and \z and +
+      favorite_thing.to_i
+    else
+      favorite_thing
+    end
+  end
+
+  def favorite_number_is_small # favorite_number_is_small?
+    if converted_favorite_thing === Fixnum # use is_a? instead
+      return converted_favorite_thing <= 10 # unnecessary return
+    else
+      return nil # unnecessary return
     end
   end
 
