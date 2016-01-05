@@ -1,3 +1,5 @@
+http://david.elbe.me/developers/hiring/2014/09/17/fizzbuzz-alternatives.html
+
 questions
 * what are the most important lessons you've learned in your career?
 * technical debt
